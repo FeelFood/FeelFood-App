@@ -10,7 +10,6 @@ import {TabsPage} from "../tabs/tabs";
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  private loginErrorString: string;
   user: User;
 
   constructor(public navCtrl: NavController,
@@ -20,17 +19,21 @@ export class LoginPage {
   }
 
   // Attempt to login in through our User service
-  doLogin() {
-    this.authService.login(this.user).subscribe((resp) => {
-      this.navCtrl.push(TabsPage);
-    }, (err) => {
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
+  doLogin(user) {
+    this.authService.login(user).subscribe((data) => {
+        console.log(JSON.stringify(data));
+        if (!data['success']) {
+          // Unable to log in
+          let toast = this.toastCtrl.create({
+            message: data['message'],
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+        } else {
+          this.authService.storeUserData(data['token'], data['user']);
+          this.navCtrl.push(TabsPage);
+        }
       });
-      toast.present();
-    });
   }
 }
