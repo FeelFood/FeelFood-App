@@ -11,12 +11,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {WelcomePage} from "../pages/welcome/welcome";
-import {LoginPage} from "../pages/login/login";
-import {SignupPage} from "../pages/signup/signup";
-import {AuthService} from "../providers/authentication/auth.service";
-import {LoginPageModule} from "../pages/login/login.module";
-import {SignupPageModule} from "../pages/signup/signup.module";
+import { WelcomePage } from "../pages/welcome/welcome";
+import { LoginPage} from "../pages/login/login";
+import { SignupPage} from "../pages/signup/signup";
+import { DashboardPage } from "../pages/dashboard/dashboard";
+import { AuthService } from "../providers/authentication/auth.service";
+import { LoginPageModule } from "../pages/login/login.module";
+import { SignupPageModule } from "../pages/signup/signup.module";
+
+import {MapHelper} from "../helpers/mapHelper";
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import {SignupPageModule} from "../pages/signup/signup.module";
     ContactPage,
     HomePage,
     TabsPage,
-    WelcomePage
+    WelcomePage,
+    DashboardPage
   ],
   imports: [
     BrowserModule,
@@ -44,13 +48,15 @@ import {SignupPageModule} from "../pages/signup/signup.module";
     TabsPage,
     WelcomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    DashboardPage
   ],
   providers: [
     AuthService,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    MapHelper,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

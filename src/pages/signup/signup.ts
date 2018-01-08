@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/authentication/auth.service';
 import { User } from '../../providers/models/user';
-import {LoginPage} from "../login/login";
+import { LoginPage } from "../login/login";
 
 @IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
 })
-export class SignupPage {
+export class SignupPage{
   user: User;
   login: LoginPage;
 
@@ -20,19 +20,24 @@ export class SignupPage {
     this.user = new User;
   }
 
+  presentToast(msg, css){
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      cssClass: css
+    });
+    toast.present();
+  }
+
   doSignup() {
     // Attempt to login in through our User service
     this.authService.signUp(this.user).subscribe((data) => {
       console.log(JSON.stringify(data));
       if (!data['success']) {
-        // Unable to sign up
-        let toast = this.toastCtrl.create({
-          message: data['message'],
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
+        this.presentToast(data['message'], 'toast-error');
       } else {
+        this.presentToast('Signup succesful!', 'toast-success');
         this.login.doLogin(this.user);
       }
     });

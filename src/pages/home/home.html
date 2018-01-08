@@ -1,13 +1,30 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>FeelFood</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <tr *ngFor="let restaurant of restaurants" align="center">
+<ion-content>
+    <ion-row *ngFor="let restaurant of restaurants">
 
-    <td><h3>{{restaurant.name}}</h3></td><td > <img  [src]="'http://www.ecocentro.es/imagenes/contenidos/Restaurante%20vegetariano%20Ecocentro%202.jpg'" width="50%"></td>
-  </tr>
+      <ion-card (click)="viewRestaurant(restaurant)" color="light">
+        <div>
+          <img src="http://www.ecocentro.es/imagenes/contenidos/Restaurante%20vegetariano%20Ecocentro%202.jpg"/>
+        </div>
 
+          <ion-item>
+            <h2>{{restaurant.name}}</h2>
+            <ion-icon name="pin" item-start large></ion-icon>
+            <p>{{restaurant.address}}</p>
+          </ion-item>
+
+        <ion-item>
+          <ion-icon name="information-circle" item-start large></ion-icon>
+          <p>{{restaurant.email}}</p>
+          <p>{{restaurant.phone}}</p>
+        </ion-item>
+
+      </ion-card>
+
+    </ion-row>
 </ion-content>

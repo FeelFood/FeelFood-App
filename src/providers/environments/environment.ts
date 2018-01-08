@@ -14,13 +14,13 @@ export class EnvironmentHelper {
 
   private readonly userDictionary = {
     signup : '/user/signup',
-    login: '/user/login',
+    login: '/login',
     loginFb: '/auth/facebook',
     user: '/user',
-    profile: '/user?username=',
+    profile: '/user?id=',
     delete: '/user?id=',
     allergies: '/allergies'
-  }
+  };
 
   private readonly restaurantDictionary = {
     signup : '/restaurant/signup',
@@ -30,7 +30,7 @@ export class EnvironmentHelper {
     allRestaurants: '/restaurants',
     profile: '/restaurant?username=',
     ingredients: '/ingredient'
-  }
+  };
 
   readonly urlDictionary = {
     user: this.userDictionary,
