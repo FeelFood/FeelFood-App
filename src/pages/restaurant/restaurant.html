@@ -7,6 +7,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <div padding>
+    <ion-segment [(ngModel)]="dish">
+      <ion-segment-button value="menu">Menu</ion-segment-button>
+      <ion-segment-button value="card">Card</ion-segment-button>
+    </ion-segment>
+  </div>
 
 </ion-content>
