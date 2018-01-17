@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { tokenNotExpired } from 'angular2-jwt';
 import {EnvironmentHelper} from '../environments/environment';
+import {User} from "../models/user";
+import { MapHelper } from "../../helpers/mapHelper";
 
 @Injectable()
 export class AuthService {
@@ -10,9 +12,11 @@ export class AuthService {
   user;
   options;
   envHelper: EnvironmentHelper;
+  mapHelper: MapHelper;
 
   constructor(private http: HttpClient) {
     this.envHelper = new EnvironmentHelper();
+    this.mapHelper = new MapHelper();
   }
 
   createAuthHeaders () {
@@ -39,11 +43,16 @@ export class AuthService {
     this.authToken = token;
     this.user = user;
   }
+
   storeRestaurantData (token, restaurant) {
     localStorage.setItem('token', 'JWT ' + token);
     localStorage.setItem('restaurant', JSON.stringify(restaurant));
     this.authToken = token;
     this.user = restaurant;
+  }
+
+  readCurrentUser(){
+    return this.user;
   }
 
   readToken () {

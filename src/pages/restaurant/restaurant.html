@@ -1,19 +1,49 @@
 <ion-header>
-
   <ion-navbar color="secondary">
     <ion-title>{{ restaurant.name }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content>
 
-  <div padding>
-    <ion-segment [(ngModel)]="dish">
+  <div>
+    <ion-segment [(ngModel)]="dishType">
       <ion-segment-button value="menu">Menu</ion-segment-button>
       <ion-segment-button value="card">Card</ion-segment-button>
     </ion-segment>
   </div>
+
+
+    <div [ngSwitch]="dishType">
+
+      <ion-list *ngSwitchCase="'menu'">
+        <h5 padding *ngIf="!this.restaurant.menus[0]">No menus</h5>
+
+        <ion-list *ngFor="let menu of this.restaurant.menus">
+
+          <ion-card (click)="openMenuOrders(menu)">
+            <ion-card-content>
+              <p>{{ menu.name }} <span style="float:right;">{{ menu.price | euros }}</span></p>
+            </ion-card-content>
+          </ion-card>
+        </ion-list>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'card'">
+        <h5 padding *ngIf="!this.restaurant.dishes[0]">No dishes</h5>
+        <ion-list *ngFor="let dish of this.restaurant.dishes">
+
+          <ion-card (click)="openOrders(dish)">
+            <ion-card-content>
+              <!--<span>{{date | date:'yyyy-MM-dd'}}</span>-->
+              <p>{{ dish.name }} <span style="float:right;">{{ dish.price | euros }}</span></p>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-list>
+      </ion-list>
+
+    </div>
 
 </ion-content>

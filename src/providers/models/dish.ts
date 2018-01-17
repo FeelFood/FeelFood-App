@@ -2,6 +2,7 @@ import { Ingredient } from './ingredient';
 
 export class Dish {
     name: String;
+    price: Number;
     category: String;
     description: String;
     amount: Number;
@@ -11,6 +12,7 @@ export class Dish {
 
   constructor() {
     this.name = '',
+    this.price = null,
     this.category = '',
     this.description = '',
     this.amount = null,

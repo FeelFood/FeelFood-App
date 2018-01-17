@@ -4,8 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -14,19 +12,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { WelcomePage } from "../pages/welcome/welcome";
 import { LoginPage} from "../pages/login/login";
 import { SignupPage} from "../pages/signup/signup";
+import { CartPage } from "../pages/cart/cart";
 import { DashboardPage } from "../pages/dashboard/dashboard";
 import { AuthService } from "../providers/authentication/auth.service";
 import { LoginPageModule } from "../pages/login/login.module";
 import { SignupPageModule } from "../pages/signup/signup.module";
+import { RestaurantPageModule } from "../pages/restaurant/restaurant.module";
+import { CartPageModule } from "../pages/cart/cart.module";
 
-import {MapHelper} from "../helpers/mapHelper";
+import { MapHelper } from "../helpers/mapHelper";
+import { CartProvider } from '../providers/cart/cart';
+
 
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     WelcomePage,
@@ -37,19 +38,20 @@ import {MapHelper} from "../helpers/mapHelper";
     LoginPageModule,
     SignupPageModule,
     HttpClientModule,
+    RestaurantPageModule,
+    CartPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     WelcomePage,
     LoginPage,
     SignupPage,
-    DashboardPage
+    DashboardPage,
+    CartPage
   ],
   providers: [
     AuthService,
@@ -57,6 +59,7 @@ import {MapHelper} from "../helpers/mapHelper";
     SplashScreen,
     MapHelper,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CartProvider,
   ]
 })
 export class AppModule {}
