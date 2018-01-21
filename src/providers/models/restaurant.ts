@@ -7,6 +7,15 @@ export class Restaurant {
   username: String;
   password: String;
   email: String;
+  tags: {
+    homeDelivery: boolean,
+    takeAway: boolean,
+    description: Array<[
+      {
+        name: String,
+        value: Number
+      }]>;
+  };
   name: String;
   images: Array<String>;
   phone: Number;

@@ -11,29 +11,36 @@ export class EnvironmentHelper {
   };
 
   readonly urlbase: string = this.environment.developer ? 'http://localhost:3001' : 'http://147.83.7.157:3001';
-
+  // readonly urlbase: string = 'http://147.83.7.157:3001';
   private readonly userDictionary = {
-    signup : '/user/signup',
+    signup: '/user/signup',
     login: '/login',
-    loginFb: '/auth/facebook',
+    loginFb: '/auth/facebook/user',
     user: '/user',
     profile: '/user?id=',
     delete: '/user?id=',
-    allergies: '/allergies'
+    allergies: '/allergies',
+    contact: '/contact',
+    forgotPassword: '/resetPassword',
+    resetPassword: '/resetPassword/new'
   };
 
   private readonly restaurantDictionary = {
-    signup : '/restaurant/signup',
+    signup: '/restaurant/signup',
     login: '/restaurant/login',
     loginFb: '/auth/facebook',
     restaurant: '/restaurant',
     allRestaurants: '/restaurants',
-    profile: '/restaurant?username=',
-    ingredients: '/ingredient'
+    profile: '/restaurant?id=',
+    ingredients: '/ingredient',
+    delete: '/restaurant?id=',
+    publicRestaurant: '/restaurant/public?id=',
+    orders: '/orders',
+    orderDetail: '/orders?id='
   };
 
   readonly urlDictionary = {
     user: this.userDictionary,
-    restaurant : this.restaurantDictionary
+    restaurant: this.restaurantDictionary
   }
 }

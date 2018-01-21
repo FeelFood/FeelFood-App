@@ -13,7 +13,31 @@
 </ion-header>
 
 
+<div>
+  <ion-segment [(ngModel)]="options">
+    <ion-segment-button value="profile">Profile</ion-segment-button>
+    <ion-segment-button value="orders">Orders</ion-segment-button>
+  </ion-segment>
+</div>
+
+
+<div [ngSwitch]="options">
+
+  <ion-list *ngSwitchCase="'profile'">
+    sad
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'orders'">
+
+  </ion-list>
+
+</div>
+
+
+
 <ion-content padding>
-
+  <h4>{{ user.firstName+ " " + user.lastName }}</h4>
+  <ion-list *ngFor="let location of user.locations">
+    {{location.locationName}}
+  </ion-list>
 </ion-content>
-

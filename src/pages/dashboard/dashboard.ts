@@ -16,11 +16,13 @@ export class DashboardPage{
 
   currentUser;
   user = new User();
+  options: String;
 
   constructor(private authService: AuthService, private mapHelper: MapHelper) {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.authService.getProfile(this.currentUser._id).subscribe(data => {
-      this.user = this.mapHelper.map(User, data)
+      this.user = this.mapHelper.map(User, data);
+      this.options = "profile";
     });
   }
 }

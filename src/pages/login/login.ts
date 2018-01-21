@@ -38,6 +38,7 @@ export class LoginPage {
           // Unable to log in
         } else {
           this.authService.storeUserData(data['token'], data['user']);
+          this.authService.createAuthHeaders();
           this.navCtrl.push(TabsPage);
         }
       });

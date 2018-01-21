@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>{{ menu.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list radio-group *ngIf="this.menu.starters[0]" [(ngModel)]="starters">
+      <h5>Starters</h5>
+    <ion-list *ngFor="let option of this.menu.starters; let i = index">
+      <ion-item>
+        <ion-radio value="{{i}}" disabled="{{option.stock==0}}"></ion-radio>
+        <ion-label>{{option.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <ion-list radio-group *ngIf="this.menu.firstOptions[0]" [(ngModel)]="firstOption">
+    <h5>First options</h5>
+    <ion-list *ngFor="let option of this.menu.firstOptions; let i = index">
+      <ion-item>
+        <ion-radio value={{i}} disabled="{{option.stock==0}}"></ion-radio>
+        <ion-label>{{option.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <ion-list radio-group *ngIf="this.menu.secondOptions[0]" [(ngModel)]="secondOption">
+    <h5>Second options</h5>
+    <ion-list *ngFor="let option of this.menu.secondOptions; let i = index">
+      <ion-item>
+        <ion-radio value="{{i}}" disabled="{{option.stock==0}}"></ion-radio>
+        <ion-label>{{option.name}}</ion-label>
+        <ion-label> <span style="float:right;">{{ option.price | euros }}</span></ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <ion-list radio-group *ngIf="this.menu.thirdOptions[0]" [(ngModel)]="thirdOption">
+    <h5>Third options</h5>
+    <ion-list *ngFor="let option of this.menu.thirdOptions; let i = index">
+      <ion-item>
+        <ion-radio value="{{i}}" disabled="{{option.stock==0}}"></ion-radio>
+        <ion-label>{{option.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <ion-list radio-group *ngIf="this.menu.drinksOptions[0]" [(ngModel)]="drinksOption">
+    <h5>Drinks</h5>
+    <ion-list *ngFor="let option of this.menu.drinksOptions; let i = index">
+      <ion-item>
+        <ion-radio value="{{i}}" disabled="{{option.stock==0}}"></ion-radio>
+        <ion-label>{{option.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <ion-list radio-group *ngIf="this.menu.othersOptions[0]" [(ngModel)]="othersOption">
+    <h5>Other options</h5>
+    <ion-list *ngFor="let option of this.menu.othersOptions; let i = index">
+      <ion-item>
+        <ion-radio value="{{i}}" disabled="{{option.stock==0}}"></ion-radio>
+        <ion-label>{{option.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <div text-center>
+    <button [large] ion-button (click)="add()">Add to cart ({{menu.price | euros}})</button>
+  </div>
+</ion-content>

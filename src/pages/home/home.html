@@ -10,21 +10,45 @@
     <ion-list *ngFor="let restaurant of restaurants">
 
       <ion-card (click)="viewRestaurant(restaurant)" color="light">
+
         <div>
           <img src="http://www.ecocentro.es/imagenes/contenidos/Restaurante%20vegetariano%20Ecocentro%202.jpg"/>
         </div>
 
-          <ion-item>
-            <ion-icon name="pin" item-start large></ion-icon>
-            <span>{{ restaurant.name }}</span>
-            <p>{{restaurant.address}}</p>
-          </ion-item>
+        <ion-item>
+          <ion-icon name="pin" item-start large></ion-icon>
+          <span>{{ restaurant.name }}</span>
+          <p>{{restaurant.address}}</p>
+        </ion-item>
 
         <ion-item>
           <ion-icon name="information-circle" item-start large></ion-icon>
           <p>{{restaurant.email}}</p>
           <p>{{restaurant.phone}}</p>
         </ion-item>
+
+        <ion-row>
+          <ion-col *ngFor="let tag of restaurant.tags.description">
+              <span ion-button icon-left clear small>
+                <ion-icon name="pricetag"></ion-icon>
+                <div>{{tag.name}}</div>
+              </span>
+          </ion-col>
+
+          <ion-col *ngIf=restaurant.tags.takeAway>
+            <span ion-button icon-left clear small>
+              <ion-icon name="basket"></ion-icon>
+              <div>TakeAway</div>
+            </span>
+          </ion-col>
+
+          <ion-col *ngIf=restaurant.tags.homeDelivery>
+            <span ion-button icon-left clear small>
+              <ion-icon name="bicycle"></ion-icon>
+              <div>Home delivery</div>
+            </span>
+          </ion-col>
+        </ion-row>
 
       </ion-card>
 

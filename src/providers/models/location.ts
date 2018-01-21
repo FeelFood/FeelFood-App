@@ -1,7 +1,7 @@
 export class Location {
     locationName: String;
     address: String;
-    postalCode: Number;
+    postalCode: String;
     country: String;
     city: String;
     lat: Number;

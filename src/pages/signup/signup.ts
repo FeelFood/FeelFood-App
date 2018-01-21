@@ -32,7 +32,7 @@ export class SignupPage{
 
   doSignup() {
     // Attempt to login in through our User service
-    this.authService.signUp(this.user).subscribe((data) => {
+    this.authService.signUpUser(this.user).subscribe((data) => {
       console.log(JSON.stringify(data));
       if (!data['success']) {
         this.presentToast(data['message'], 'toast-error');

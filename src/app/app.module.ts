@@ -24,7 +24,6 @@ import { MapHelper } from "../helpers/mapHelper";
 import { CartProvider } from '../providers/cart/cart';
 
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -59,7 +58,7 @@ import { CartProvider } from '../providers/cart/cart';
     SplashScreen,
     MapHelper,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CartProvider,
+    CartProvider
   ]
 })
 export class AppModule {}

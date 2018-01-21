@@ -13,8 +13,6 @@ export class User {
     locations: Array<Location>;
     allergies: Array<Allergy>;
     favoriteRestaurants: Array<Restaurant>;
-    // orders: [Schema.Types.ObjectId, ref: 'orders' }],
-    // isAdmin: Boolean
 }
 
 export function mapNewObject(data) {
