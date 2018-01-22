@@ -5,6 +5,8 @@ import { Restaurant } from "../../providers/models/restaurant";
 import { Allergy } from "../../providers/models/allergy";
 import { AuthService } from "../../providers/authentication/auth.service";
 import { MapHelper} from "../../helpers/mapHelper";
+import { HttpClient } from "@angular/common/http";
+import { Order } from "../../providers/models/order";
 
 
 @IonicPage()
@@ -16,13 +18,14 @@ export class DashboardPage{
 
   currentUser;
   user = new User();
-  options: String;
+  view: String;
 
-  constructor(private authService: AuthService, private mapHelper: MapHelper) {
+
+  constructor(private authService: AuthService, private mapHelper: MapHelper, private http: HttpClient) {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.authService.getProfile(this.currentUser._id).subscribe(data => {
       this.user = this.mapHelper.map(User, data);
-      this.options = "profile";
+      this.view = "profile";
     });
   }
 }

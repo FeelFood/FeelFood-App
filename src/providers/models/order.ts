@@ -15,7 +15,7 @@ export class Order {
     lng: Number
   };
 
-  username_id: String;
+  user_id: String;
   user_location: {
     locationName: String,
     address: String,
@@ -37,15 +37,10 @@ export class Order {
 
   constructor(){
     this.restaurant_id = '';
-    this.username_id = '';
-    this.restaurant_location = null;
-    this.user_location = null;
-    this.createDate = null;
-    this.deliveryDate = null;
+    this.user_id = '';
     this.status = [];
-    this.totalPrice = null;
     this.comment = '';
-    this.menuDetails = [];
     this.dishesDetails = [];
+    this.menuDetails = [];
   }
 }

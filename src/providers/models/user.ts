@@ -2,6 +2,7 @@
 import { Location } from './location';
 import { Restaurant } from './restaurant';
 import {Allergy} from "./allergy";
+import {Order} from "./order";
 
 export class User {
     _id: String;
@@ -13,6 +14,7 @@ export class User {
     locations: Array<Location>;
     allergies: Array<Allergy>;
     favoriteRestaurants: Array<Restaurant>;
+    orders: Array<Order>;
 }
 
 export function mapNewObject(data) {

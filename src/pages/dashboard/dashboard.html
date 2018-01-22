@@ -13,31 +13,37 @@
 </ion-header>
 
 
-<div>
-  <ion-segment [(ngModel)]="options">
-    <ion-segment-button value="profile">Profile</ion-segment-button>
-    <ion-segment-button value="orders">Orders</ion-segment-button>
-  </ion-segment>
-</div>
-
-
-<div [ngSwitch]="options">
-
-  <ion-list *ngSwitchCase="'profile'">
-    sad
-  </ion-list>
-
-  <ion-list *ngSwitchCase="'orders'">
-
-  </ion-list>
-
-</div>
-
-
-
 <ion-content padding>
-  <h4>{{ user.firstName+ " " + user.lastName }}</h4>
-  <ion-list *ngFor="let location of user.locations">
-    {{location.locationName}}
-  </ion-list>
+  <div>
+    <ion-segment [(ngModel)]="view">
+      <ion-segment-button value="profile">Profile</ion-segment-button>
+      <ion-segment-button value="order">Orders</ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+  <div [ngSwitch]="view">
+
+    <ion-list *ngSwitchCase="'profile'">
+      <ion-segment></ion-segment>
+      <h4>{{ user.firstName+ " " + user.secondName }}</h4>
+      <p>My locations:</p>
+      <ion-list *ngFor="let location of user.locations">
+        {{location.locationName}}: {{location.address}}, {{location.city}} {{location.postalCode}}
+    </ion-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'order'">
+      <ion-list *ngFor="let order of this.user.orders">
+        <ion-card>
+          <ion-card-content>
+            <p>Order num {{order._id}} on {{order.createDate | date}}</p>
+            <p>{{ order.status[0].state }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-list>
+
+  </div>
+
 </ion-content>

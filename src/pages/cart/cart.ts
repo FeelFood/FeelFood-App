@@ -17,6 +17,7 @@ import {User} from "../../providers/models/user";
 export class CartPage{
   order: Order;
   url = 'http://localhost:3001/orders';
+  user:User;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -25,7 +26,7 @@ export class CartPage{
               public http: HttpClient,
               private AuthSrv: AuthService){
     this.order = this.cartProvider.order;
-  }
+    }
 
   ionViewWillEnter(){
     this.order = this.cartProvider.order;
@@ -37,21 +38,15 @@ export class CartPage{
       price += +dish.price;
     });
     this.order.menuDetails.forEach(function(menu){
-      price += +menu.starters[0].price;
-      price += +menu.firstOptions[0].price;
-      price += +menu.secondOptions[0].price;
-      price += +menu.thirdOptions[0].price;
-      price += +menu.drinksOptions[0].price;
-      price += +menu.othersOptions[0].price;
+      price += +menu.price;
     });
     return price;
   }
 
   fillOrder(){
     this.order.createDate = new Date(Date.now());
-    this.order.username_id = JSON.parse(localStorage.getItem('user'))._id;
     var currentUser = JSON.parse(localStorage.getItem('user'));
-    this.order.username_id = currentUser._id;
+    this.order.user_id = currentUser._id;
     this.order.restaurant_id = this.cartProvider.restaurant_id;
     this.order.totalPrice = this.totalPrice();
   }
@@ -63,8 +58,10 @@ export class CartPage{
 
   makeOrder(){
     this.fillOrder();
-    this.http.post(this.url, JSON.stringify(this.order), this.AuthSrv.options).subscribe(res => function(){});
-    //this.cartProvider.reset();
-    //this.reset();
+    this.http.post(this.url, JSON.stringify(this.order), this.AuthSrv.options).subscribe(res => function(){
+      this.cartProvider.reset();
+      this.reset();
+    });
+
   }
 }

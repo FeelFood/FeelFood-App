@@ -7,13 +7,12 @@
 </ion-header>
 
 <ion-content>
-
   <h5 padding *ngIf="!this.order.menuDetails[0] && !this.order.dishesDetails[0]">Cart is empty</h5>
 
   <ion-list *ngFor="let menu of this.order.menuDetails">
     <ion-card>
       <ion-card-content>
-        <p>{{ menu.name }} <span style="float:right;">{{ menu.totalPrice | euros }}</span></p>
+        <p>{{ menu.name }} <span style="float:right;">{{ menu.price | euros }}</span></p>
       </ion-card-content>
     </ion-card>
   </ion-list>
@@ -26,10 +25,9 @@
     </ion-card>
   </ion-list>
 
-  <div text-center *ngIf="this.order.menuDetails[0] || this.order.dishesDetails[0]">
+ <div text-center *ngIf="this.order.menuDetails[0] || this.order.dishesDetails[0]">
     <button ion-button color="danger" [large] padding (click)="reset()">Delete all</button>
     <button ion-button [large] padding (click)="makeOrder()">Proceed to checkout</button>
-  </div>
-
+ </div>
 
 </ion-content>

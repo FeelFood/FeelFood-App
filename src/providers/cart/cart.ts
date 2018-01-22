@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Dish } from "../models/dish";
 import { Menu } from "../models/menu";
 import {Order} from "../models/order";
+import {User} from "../models/user";
+import {MapHelper} from "../../helpers/mapHelper";
 
 @Injectable()
 export class CartProvider {
@@ -10,10 +12,10 @@ export class CartProvider {
   dishes: Dish[];
   order: Order;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private mapHelper: MapHelper) {
     this.dishes = [];
-    this.order = new Order();
     this.restaurant_id = '';
+    this.order = new Order();
   }
 
   public addDish(restaurant_id, dish){
@@ -26,14 +28,15 @@ export class CartProvider {
     return false;
   }
 
-  public addMenu(menuOrder){
-    if(menuOrder.restaurant_id=='' || menuOrder.restaurant_id==this.restaurant_id){
-      this.restaurant_id = menuOrder.restaurant_id;
-      this.order.restaurant_id = menuOrder.restaurant_id;
-      this.order.menuDetails.push(menuOrder.menuDetails);
+  public addMenu(restaurant_id, menuOrder){
+    if(this.restaurant_id=='' || menuOrder.restaurant_id==this.restaurant_id){
+      this.restaurant_id = restaurant_id;
+      this.order.restaurant_id = restaurant_id;
+      this.order.menuDetails.push(menuOrder);
+      console.log(this.order);
       return true;
     }
-    return false;
+    else return false;
   }
 
   public reset(){

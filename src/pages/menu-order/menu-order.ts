@@ -12,7 +12,8 @@ import {Order} from "../../providers/models/order";
 })
 export class MenuOrderPage {
   menu: Menu;
-  order: Order;
+  order: Menu;
+  restaurant_id;
   starters;
   firstOption;
   secondOption;
@@ -26,21 +27,24 @@ export class MenuOrderPage {
               public cartProvider: CartProvider,
               private toastCtrl: ToastController) {
     this.menu = navParams.get("order");
-    this.id = navParams.get("id");
-    this.order = new Order();
+    this.order = new Menu();
+    this.restaurant_id = navParams.get("id");
   }
 
   add(){
-    this.order.restaurant_id = this.id;
-    this.order.menuDetails['starters'] = this.menu[this.starters];
-    this.order.menuDetails['firstOptions'] = this.menu[this.firstOption];
-    this.order.menuDetails['secondOptions'] = this.menu[this.secondOption];
-    this.order.menuDetails['thirdOptions'] = this.menu[this.thirdOption];
-    this.order.menuDetails['drinksOptions'] = this.menu[this.drinksOption];
-    this.order.menuDetails['othersOptions'] = this.menu[this.othersOption];
+    this.order.name = this.menu.name;
+    this.order.description = this.menu.description;
+    this.order.visible = this.menu.visible;
+    this.order.comments = this.menu.comments;
+    this.order.starters[0] = this.menu.starters[this.starters];
+    this.order.firstOptions[0] = this.menu.firstOptions[this.firstOption];
+    this.order.secondOptions[0] = this.menu.secondOptions[this.secondOption];
+    this.order.thirdOptions[0] = this.menu.thirdOptions[this.thirdOption];
+    this.order.drinksOptions[0] = this.menu.drinksOptions[this.drinksOption];
+    this.order.othersOptions[0] = this.menu.othersOptions[this.othersOption];
+    this.order.price = this.menu.price;
 
-
-    if(!this.cartProvider.addMenu(this.order)){
+    if(!this.cartProvider.addMenu(this.restaurant_id, this.order)){
       let toast = this.toastCtrl.create({
         message: 'You have uncompleted orders on another restaurant',
         duration: 1500,
