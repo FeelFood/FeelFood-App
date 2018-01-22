@@ -14,7 +14,7 @@ export class User {
     locations: Array<Location>;
     allergies: Array<Allergy>;
     favoriteRestaurants: Array<Restaurant>;
-    orders: Array<Order>;
+    //orders: Array<Order>;
 }
 
 export function mapNewObject(data) {

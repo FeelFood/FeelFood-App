@@ -12,7 +12,7 @@
       <ion-card (click)="viewRestaurant(restaurant)" color="light">
 
         <div>
-          <img src="http://www.ecocentro.es/imagenes/contenidos/Restaurante%20vegetariano%20Ecocentro%202.jpg"/>
+          <img [src]='restaurant.images.type[0].url'/>
         </div>
 
         <ion-item>

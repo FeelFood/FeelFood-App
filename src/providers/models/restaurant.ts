@@ -17,7 +17,11 @@ export class Restaurant {
       }]>;
   };
   name: String;
-  images: Array<String>;
+  images: {
+    type:[{
+      name: String,
+      url: String
+  }]};
   phone: Number;
   location: Array<Location>;
   menus: Array<Menu>;

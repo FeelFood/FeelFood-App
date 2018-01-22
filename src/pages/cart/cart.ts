@@ -8,6 +8,7 @@ import {Menu} from "../../providers/models/menu";
 import {Dish} from "../../providers/models/dish";
 import { AuthService } from "../../providers/authentication/auth.service";
 import {User} from "../../providers/models/user";
+import {EnvironmentHelper} from "../../providers/environments/environment";
 
 @IonicPage()
 @Component({
@@ -16,7 +17,6 @@ import {User} from "../../providers/models/user";
 })
 export class CartPage{
   order: Order;
-  url = 'http://localhost:3001/orders';
   user:User;
 
   constructor(public navCtrl: NavController,
@@ -24,7 +24,8 @@ export class CartPage{
               private mapHelper: MapHelper,
               private cartProvider: CartProvider,
               public http: HttpClient,
-              private AuthSrv: AuthService){
+              private AuthSrv: AuthService,
+              private EnvHelper: EnvironmentHelper){
     this.order = this.cartProvider.order;
     }
 
@@ -58,7 +59,8 @@ export class CartPage{
 
   makeOrder(){
     this.fillOrder();
-    this.http.post(this.url, JSON.stringify(this.order), this.AuthSrv.options).subscribe(res => function(){
+    this.http.post(this.EnvHelper.urlbase + this.EnvHelper.urlDictionary.restaurant.orders,
+      JSON.stringify(this.order), this.AuthSrv.options).subscribe(res => function(){
       this.cartProvider.reset();
       this.reset();
     });
